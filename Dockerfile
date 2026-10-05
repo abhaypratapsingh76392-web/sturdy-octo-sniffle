@@ -1,8 +1,9 @@
 # PHP aur Apache ka official base image
 FROM php:8.2-apache
 
-# Unzip tool install karein taaki zip file khul sake
-RUN apt-get update && apt-get install -y unzip
+# Unzip tool aur database connect karne ke liye zaroori extensions install karein
+RUN apt-get update && apt-get install -y unzip \
+    && docker-php-ext-install mysqli pdo pdo_mysql
 
 # Server ki root directory set karein
 WORKDIR /var/www/html/
